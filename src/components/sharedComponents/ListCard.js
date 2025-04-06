@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import defaultImage from '@assets/images/default-image.jpg';
 import { formatDate } from '@utils/sharedFunctions';
+import { COLORS } from '@styles/theme';
 const ListCard = ({ item, onPress }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
@@ -29,7 +30,7 @@ export default ListCard;
 const styles = StyleSheet.create({
   card: {
     borderRadius: 12,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.defaultBackground,
     overflow: 'hidden',
     elevation: 3,
     marginBottom: 12,
@@ -46,16 +47,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 6,
-    color: '#333',
+    color: COLORS.titleText,
   },
   date:{
     fontSize: 12,
     fontWeight: 400,
     marginBottom: 4,
-    color: '#4E4E4E',
+    color: COLORS.semiDarkText,
   },
   description: {
     fontSize: 14,
-    color: '#666',
+    color: COLORS.decriptionText,
   },
 });

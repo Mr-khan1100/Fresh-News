@@ -5,8 +5,9 @@ import CountryFilter from '@utils/CountryFilter';
 import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import bookMarkedIcon from '@assets/icons/Bookmarked.jpg';
-import { categories } from '@constants/appContants';
-
+import { categories, generalConstants, navigate } from '@constants/appContants';
+import searchIcon from '@assets/icons/search-icon.png';
+import { COLORS } from '@styles/theme';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -18,16 +19,16 @@ const HomeScreen = ({ navigation }) => {
       <TouchableOpacity
           style={styles.searchContainer}
           onPress={() => {
-            navigation.navigate('Search');
+            navigation.navigate(navigate.SEARCH);
           }}>
           <Image
-            source={require('../../assets/icons/search-icon.png')}
+            source={searchIcon}
             style={styles.searchIcon}
           />
-          <Text style={[styles.searchInput]}>Search</Text>
+          <Text style={[styles.searchInput]}>{generalConstants.SEARCH}</Text>
         </TouchableOpacity>
         <CountryFilter selectedCountry = {selectedCountry}/>
-        <TouchableOpacity style={styles.filterBox} onPress={() => navigation.navigate('BookMarked')}>
+        <TouchableOpacity style={styles.filterBox} onPress={() => navigation.navigate(navigate.BOOKMARKED)}>
             <FastImage
             style={styles.image}
             source={ bookMarkedIcon}
@@ -42,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
           <CategoryCard
             title={item.title}
             image={item.image}
-            onPress={() => navigation.navigate('List', { category: item.id, country : selectedCountry })}
+            onPress={() => navigation.navigate(navigate.LIST, { category: item.id, country : selectedCountry })}
           />
         )}
         showsVerticalScrollIndicator={false}
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     padding: 16, 
-    backgroundColor: '#fff' 
+    backgroundColor: COLORS.defaultBackground 
   },
   searchAndFilter: {
     flexDirection: 'row',
@@ -75,36 +76,33 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: COLORS.defaultBackground,
     borderRadius: 8,
     paddingHorizontal: 10,
-    // paddingVertical: 14,
     height:'100%',
     flex: 1,
-    // height: 44,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLORS.placeholderTextColor,
   },
   searchIcon: {
     width: 30,
     height: 30,
-    tintColor: '#B0B0B0',
+    tintColor: COLORS.placeholderTextColor,
     marginRight: 20,
   },
   searchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#999290',
+    color: COLORS.placeholderTextColor,
   },
   filterBox: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    // paddingVertical: 8,
     height:'100%',
     borderWidth: 1,
-    backgroundColor:'white',
-    borderColor: '#ccc',
+    backgroundColor:COLORS.defaultBackground,
+    borderColor: COLORS.placeholderTextColor,
     borderRadius: 8,
   },
   image: {

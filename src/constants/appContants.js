@@ -76,3 +76,36 @@ export   const categories = [
   { id: 'sports', title: 'Sports', image: sports },
   { id: 'technology', title: 'Technology', image:technology  },
 ];
+
+
+export const headerConstants = {
+  BOOKMARKED_LIST :'bookMarked  list',
+  FUll_ARTICLE: 'FUll ARTICLE',
+  DETAIL : 'DETAIL',
+  LIST : 'list',
+  SEARCH : 'search',
+}
+
+export const navigate = {
+  HOME : 'Home',
+  LIST : 'List',
+  DETAIL: 'Detail',
+  SEARCH: 'Search',
+  BOOKMARKED: 'BookMarked',
+}
+
+export const generalConstants = {
+  FADE : 'fade',
+  NO_BOOKMARKED : 'No bookmarks',
+  READ_FULL_ARTICLE : 'Read Full Article',
+  SEARCH: 'Search',
+  OOPS : 'Oops!',
+  NO_INTERNET : 'No Internet',
+  CHECK_INTERNET : 'Please check your internet connection and try again',
+  SEARCH_COUNTRY : 'search country by name',
+  SEARCH_ARTICEL : 'Search articles...',
+  DATE : 'date',
+  NO_RESPONSE : 'No response received from server',
+  ERROR_REQUEST : 'Error setting up request',
+  UNEXPECTED_ERROR : 'An unexpected error occurred',
+}

@@ -11,10 +11,9 @@ export async function getSelectedCategoryList(category, country) {
         category: category,
         country: country,
       }).then(response => {
-        if (response?.data?.status === 'error') {
+        if (response?.data.status === 'error') {
           throw new Error(response.data.message || 'Something went wrong');
         }
-        console.log(response.data.articles);
         
         return response.data.articles;
       });
@@ -35,7 +34,7 @@ export async function getSearchResults(query, from) {
       query: query,
       from: from,
     }).then(response => {
-      if (response?.data?.status === 'error') {
+      if (response?.data.status === 'error') {
       console.log(response.data, 'response in search 1');
 
         throw new Error(response.data.message || 'Something went wrong');

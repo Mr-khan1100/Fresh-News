@@ -1,4 +1,3 @@
-// screens/ListScreen.js
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert, RefreshControl } from 'react-native';
 import { getSelectedCategoryList } from '@api/services';
@@ -9,6 +8,7 @@ import { checkInternetConnection } from '@utils/sharedFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategoryList } from '@redux/slices/userSlice';
 import { UserContext } from '@components/navigation/ContextProvider';
+import { generalConstants, headerConstants, navigate } from '@constants/appContants';
 
 const ListScreen = ({ route, navigation }) => {
   const { category, country } = route.params;
@@ -28,14 +28,14 @@ const ListScreen = ({ route, navigation }) => {
       setIsRefreshing(false);
     } catch (error) {
       navigation.goBack();
-      Alert.alert('Oops!', error.toString());
+      Alert.alert(generalConstants.OOPS, error.message || generalConstants.UNEXPECTED_ERROR);
     }finally{
       setLoading(false);
       setIsRefreshing(false);
     }
     }else{
       navigation.goBack();
-      Alert.alert('No Internet', 'Please check your internet connection and try again');
+      Alert.alert(generalConstants.NO_INTERNET, generalConstants.CHECK_INTERNET);
       setLoading(false);
       setIsRefreshing(false);
     }
@@ -54,7 +54,7 @@ const ListScreen = ({ route, navigation }) => {
 
   return (
     <>
-    <CustomHeader title={(`${category}  list`).toLocaleUpperCase()} onBackPress={() => navigation.goBack()}/>
+    <CustomHeader title={(`${category}  ${headerConstants.LIST}`).toLocaleUpperCase()} onBackPress={() => navigation.goBack()}/>
     <View style={styles.container}>
       <FlatList
         data={articles}
@@ -62,7 +62,7 @@ const ListScreen = ({ route, navigation }) => {
         renderItem={({ item }) => (
           <ListCard
           item={item}
-          onPress={() => navigation.navigate('Detail', { article: item })}
+          onPress={() => navigation.navigate(navigate.DETAIL, { article: item })}
         />
         )}
         refreshControl={
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     padding: 16, 
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.defaultBackground,
   },
   noResultText:{
     alignSelf:'center',

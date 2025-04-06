@@ -6,17 +6,18 @@ import ListScreen from '@components/screens/ListScreen';
 import DetailScreen from '@components/screens/DetailScreen';
 import SearchScreen from '@components/screens/SearchScreen';
 import BookedMarkedScreen from '@components/screens/BookedMarkedScreen';
+import { navigate } from '@constants/appContants';
 
 const Stack = createStackNavigator();
 const AppNavigator = () => {
     return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false, }} />
-            <Stack.Screen name="List" component={ListScreen} options={{ headerShown: false, }} />
-            <Stack.Screen name="Detail" component={DetailScreen} options={{ headerShown: false, }} />
-            <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false, }} />
-            <Stack.Screen name="BookMarked" component={BookedMarkedScreen} options={{ headerShown: false, }} />
+          <Stack.Navigator initialRouteName={navigate.HOME}>
+            <Stack.Screen name={navigate.HOME} component={HomeScreen} options={{ headerShown: false, }} />
+            <Stack.Screen name={navigate.LIST} component={ListScreen} options={{ headerShown: false, }} />
+            <Stack.Screen name={navigate.DETAIL} component={DetailScreen} options={{ headerShown: false, }} />
+            <Stack.Screen name={navigate.SEARCH} component={SearchScreen} options={{ headerShown: false, }} />
+            <Stack.Screen name={navigate.BOOKMARKED} component={BookedMarkedScreen} options={{ headerShown: false, }} />
           </Stack.Navigator>
         </NavigationContainer>
       );

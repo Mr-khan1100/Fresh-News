@@ -8,6 +8,9 @@ import {
   Image,
 } from 'react-native';
 import {calHeight, calWidth, COLORS, SPACING, vw} from '@styles/theme';
+import backIcon from '@assets/icons/back_icon.png';
+import bookmarkIcon from '@assets/icons/Bookmarked.jpg';
+import unBookmarkIcon from '@assets/icons/UnBookmarked.jpg'
 
 const CustomHeader = ({
   title,
@@ -31,7 +34,7 @@ const CustomHeader = ({
           {showBackIcon && (
             <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
                <Image
-                source={require('../assets/icons/back_icon.png')}
+                source={backIcon}
                 style={styles.backArrow}
               />
             </TouchableOpacity>
@@ -63,8 +66,8 @@ const CustomHeader = ({
             >
               <Image
                 source={isBookmarked
-                  ? require('../assets/icons/Bookmarked.jpg')
-                  : require('../assets/icons/UnBookmarked.jpg')}
+                  ? bookmarkIcon
+                  : unBookmarkIcon}
                 style={styles.bookmarkIcon}
               />
             </TouchableOpacity>
@@ -78,13 +81,13 @@ const CustomHeader = ({
 const styles = StyleSheet.create({
   container: {
     height: calHeight(6),
-    backgroundColor: COLORS.background,
+    backgroundColor: COLORS.defaultBackground,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent:'space-between',
     paddingHorizontal: SPACING.medium,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.background,
+    borderBottomColor: COLORS.borderBottomColor,
   },
   sideContainer: {
     width: calWidth(10),
@@ -113,21 +116,17 @@ const styles = StyleSheet.create({
     height: 24,
   },
   ButtonStyle: {
-    backgroundColor: '#4582e6',
+    backgroundColor: COLORS.buttonBackground,
     borderRadius: 5,
     padding:10,
-    // height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginTop: 15,
-    // marginBottom:50,
   },
   TextStyle: {
-    color: '#FFFFFF',
+    color: COLORS.defaultBackground,
     fontSize: 16,
   },
   rightSideContainer:{
-    // width: calWidth(18),
     alignItems: 'flex-end',
     alignSelf:'center',
     justifyContent: 'flex-end',

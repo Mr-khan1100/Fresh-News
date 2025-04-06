@@ -1,9 +1,9 @@
 // components/CategoryCard.js
+import { COLORS } from '@styles/theme';
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-// Assuming you're passing a local asset as the image prop using require('path/to/asset')
 const CategoryCard = ({ title, image, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.card}>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#fff',
+    color: COLORS.defaultBackground,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',

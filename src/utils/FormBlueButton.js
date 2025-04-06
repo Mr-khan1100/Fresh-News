@@ -21,7 +21,7 @@ const FormBlueButton = ({disabled, style, onPress, title, titleStyle}) => {
 
 const styles = StyleSheet.create({
   ButtonStyle: {
-    backgroundColor: COLORS.mfgBlue,
+    backgroundColor: COLORS.buttonBackground,
     borderRadius: 5,
     height: vh * 7,
     justifyContent: 'center',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginTop: vh * 2,
   },
   TextStyle: {
-    color: '#FFFFFF',
+    color: COLORS.defaultBackground,
     fontSize: 16,
   },
 });

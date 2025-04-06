@@ -9,6 +9,7 @@ import { checkInternetConnection, formatDate } from "@utils/sharedFunctions";
 import CustomHeader from "@utils/CustomHeader";
 import { COLORS } from "@styles/theme";
 import calendarIconSource from '@assets/icons/date_input.png';
+import { generalConstants, headerConstants, navigate } from "@constants/appContants";
 
 const SearchScreen = ({navigation}) => {
     const [searchText, setSearchText] = useState('');
@@ -28,11 +29,7 @@ const SearchScreen = ({navigation}) => {
     };
 
     const handleConfirm = selectedDate => {
-        console.log('here');
-        
         const formattedDate = formatDate(selectedDate);
-        console.log(formattedDate,'formatted date');
-        
         dispatch(setDate(formattedDate));
         hideDatePicker();
     };
@@ -40,7 +37,7 @@ const SearchScreen = ({navigation}) => {
     useEffect(() => {
         return () => {
             dispatch(setSearchResult(null));
-            setHasSearched(false); // Reset search tracking
+            setHasSearched(false);
         };
     }, [dispatch]);
 
@@ -62,18 +59,18 @@ const SearchScreen = ({navigation}) => {
         } catch (error) {
             console.log(error, 'error');
             dispatch(setSearchResult([]));
-          Alert.alert('Oops!', error.toString());
+          Alert.alert(generalConstants.OOPS, error.message || generalConstants.UNEXPECTED_ERROR);
         }finally{
           setLoading(false);
         }
         }else{
-          Alert.alert('No Internet', 'Please check your internet connection and try again');
+          Alert.alert(generalConstants.NO_INTERNET, generalConstants.CHECK_INTERNET);
           setLoading(false);
         }
     };
 
     const handleSearchSelect = (item) => {
-        navigation.navigate('Detail', { article: item });
+        navigation.navigate(navigate.DETAIL, { article: item });
     };
   
     const renderItem = ({ item }) => (
@@ -85,7 +82,7 @@ const SearchScreen = ({navigation}) => {
   
     return (
         <>
-    <CustomHeader title={('search').toLocaleUpperCase()} onBackPress={() => navigation.goBack()}/>
+    <CustomHeader title={(headerConstants.SEARCH).toLocaleUpperCase()} onBackPress={() => navigation.goBack()}/>
       <View style={styles.container}>
         <View style={styles.searchContainer}>
             <TouchableOpacity
@@ -95,8 +92,8 @@ const SearchScreen = ({navigation}) => {
             </TouchableOpacity>
             <TextInput
             style={styles.input}
-            placeholder="Search articles..."
-            placeholderTextColor={COLORS.lavaGrey}
+            placeholder={generalConstants.SEARCH_ARTICEL}
+            placeholderTextColor={COLORS.placeholderTextColor}
             value={searchText}
             onChangeText={setSearchText}
             autoFocus
@@ -130,7 +127,7 @@ const SearchScreen = ({navigation}) => {
         />
         <DateTimePickerModal
             isVisible={isDatePickerVisible}
-            mode={'date'}
+            mode={generalConstants.DATE}
             maximumDate={new Date()}
             minimumDate={new Date(2025, 2, 5)}
             onConfirm={handleConfirm}
@@ -145,51 +142,50 @@ const SearchScreen = ({navigation}) => {
     container: {
       flex: 1,
       padding: 16,
-      backgroundColor: '#fff',
+      backgroundColor: COLORS.defaultBackground,
     },
     searchContainer: {
-        // backgroundColor:'red',
       flexDirection: 'row',
       marginBottom: 16,
       gap:10,
     },
     input: {
       flex: 1,
-      borderColor: '#ccc',
+      borderColor: COLORS.placeholderTextColor,
       borderWidth: 1,
       borderRadius: 8,
       padding: 12,
       color:COLORS.semiDarkText,
-    //   marginRight: 8,
     },
     itemContainer: {
       padding: 16,
       borderBottomWidth: 1,
-      borderBottomColor: '#eee',
+      borderBottomColor: COLORS.borderBottomColor,
     },
     title: {
       fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 8,
+      color:COLORS.titleText
     },
     description: {
       fontSize: 14,
-      color: '#666',
+      color: COLORS.decriptionText,
     },
     emptyText: {
       textAlign: 'center',
       marginTop: 20,
-      color: '#999',
+      color: COLORS.emptyText,
     },
     ButtonStyle: {
-        backgroundColor: '#4582e6',
+        backgroundColor: COLORS.buttonBackground,
         borderRadius: 5,
         padding:10,
         justifyContent: 'center',
         alignItems: 'center',
       },
       TextStyle: {
-        color: '#FFFFFF',
+        color: COLORS.defaultBackground,
         fontSize: 16,
       },
       dateContainer:{

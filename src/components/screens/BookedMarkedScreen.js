@@ -1,17 +1,17 @@
-// screens/ListScreen.js
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import CustomHeader from '@utils/CustomHeader';
 import ListCard from '@components/sharedComponents/ListCard';
 import { COLORS } from '@styles/theme';
 import { useSelector } from 'react-redux';
+import { generalConstants, headerConstants, navigate } from '@constants/appContants';
 
 const BookedMarkedScreen = ({ navigation }) => {
   const bookmarkedArticles = useSelector(state => state.bookmarks.bookmarked);
 
   return (
     <>
-    <CustomHeader title={('bookMarked  list').toLocaleUpperCase()} onBackPress={() => navigation.goBack()}/>
+    <CustomHeader title={(headerConstants.BOOKMARKED_LIST).toLocaleUpperCase()} onBackPress={() => navigation.goBack()}/>
     <View style={styles.container}>
       <FlatList
         data={bookmarkedArticles}
@@ -19,11 +19,11 @@ const BookedMarkedScreen = ({ navigation }) => {
         renderItem={({ item }) => (
           <ListCard
           item={item}
-          onPress={() => navigation.navigate('Detail', { article: item })}
+          onPress={() => navigation.navigate(navigate.DETAIL, { article: item })}
         />
         )}
         ListEmptyComponent={() => (
-          <Text style={styles.noResultText}>No bookmarks</Text> 
+          <Text style={styles.noResultText}>{generalConstants.NO_BOOKMARKED}</Text> 
         )}
         showsVerticalScrollIndicator={false}
         initialNumToRender={5}
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     padding: 16, 
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.defaultBackground,
   },
   noResultText:{
     alignSelf:'center',

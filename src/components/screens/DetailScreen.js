@@ -1,4 +1,3 @@
-// screens/DetailScreen.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, BackHandler } from 'react-native';
 import { WebView } from 'react-native-webview';
@@ -9,7 +8,8 @@ import defaultImage from '@assets/images/default-image.jpg';
 import { formatDate, generateArticleId } from '@utils/sharedFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBookmark } from '@redux/slices/bookmarkSlice';
-import { vw } from '@styles/theme';
+import { COLORS, vw } from '@styles/theme';
+import { generalConstants, headerConstants } from '@constants/appContants';
 
 const DetailScreen = ({ route, navigation }) => {
     const { article } = route.params;
@@ -52,7 +52,7 @@ const DetailScreen = ({ route, navigation }) => {
       return (
         <>
           <View style={styles.webViewContainer}>
-            <CustomHeader title={'FUll ARTICLE'} showBackIcon = {false} showBlueBackButton={true} onBlueButtonPress={()=> setShowWebView(false)}/>
+            <CustomHeader title={headerConstants.FUll_ARTICLE} showBackIcon = {false} showBlueBackButton={true} onBlueButtonPress={()=> setShowWebView(false)}/>
             <WebView source={{ uri: article.url }} style={styles.webViewContainer} />
           </View>
         </>
@@ -61,7 +61,7 @@ const DetailScreen = ({ route, navigation }) => {
 
     return (
       <>
-        <CustomHeader title={'DETAIL'} 
+        <CustomHeader title={headerConstants.DETAIL} 
             onBackPress={() => navigation.goBack()}
             showBookMark = {true}
             isBookmarked={isBookmarked}
@@ -84,7 +84,7 @@ const DetailScreen = ({ route, navigation }) => {
           <Text style={styles.content}>{(article.content || article.description)?.replace(/\[\+\d+ chars\]/, '').trim()}</Text>
           <FormBlueButton
                 onPress={() => setShowWebView(true)}
-                title={'Read Full Article'}
+                title={generalConstants.READ_FULL_ARTICLE}
               />
         </ScrollView>
         </View>
@@ -97,7 +97,7 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   scrollViewcontainer: { 
     flex: 1, 
-    backgroundColor: '#fff', 
+    backgroundColor: COLORS.defaultBackground, 
   },
   scrollContainer:{
     padding: 16 ,
@@ -119,12 +119,13 @@ const styles = StyleSheet.create({
   },
   content: { 
     fontSize: 16, 
-    lineHeight: 22 
+    lineHeight: 22,
+    color:COLORS.decriptionText,
   },
   date:{
     fontSize: 16,
     fontWeight: 500,
     marginBottom: 6,
-    color: '#2E2E2E',
+    color: COLORS.charcoal,
   },
 });

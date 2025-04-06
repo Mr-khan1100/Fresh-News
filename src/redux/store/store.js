@@ -3,7 +3,6 @@ import { persistStore, persistReducer } from 'redux-persist';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import rootReducer from '../reducers/rootReducer';
 
-// Create encrypted storage engine
 const encryptedStorage = {
   setItem: async (key, value) => {
     await EncryptedStorage.setItem(key, value);

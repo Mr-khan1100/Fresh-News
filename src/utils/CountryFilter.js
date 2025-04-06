@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Modal, FlatList, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
-import { countryCodeList } from '@constants/appContants';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Modal, FlatList, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { countryCodeList, generalConstants } from '@constants/appContants';
+import { useDispatch } from 'react-redux';
+import { COLORS } from '@styles/theme';
 import { setSelectedCountry } from '@redux/slices/userSlice';
 
 
 const CountryFilter = ({selectedCountry}) => {
-    // const selectedCountry = useSelector(state => state.user.selectedCountry);
     const dispatch = useDispatch();
-    console.log(selectedCountry,'selected country');
     
     const [modalVisible, setModalVisible] = useState(false);
     const [search, setSearch] = useState('');
@@ -40,14 +39,14 @@ const CountryFilter = ({selectedCountry}) => {
             <Text style={styles.flag}>{selectedCountry?.flag}</Text>
             <Text style={styles.countryText}>{selectedCountry?.code}</Text>
         </TouchableOpacity>
-      <Modal visible={modalVisible} transparent animationType={'fade'} onRequestClose={() => setModalVisible(false)}>
+      <Modal visible={modalVisible} transparent animationType={generalConstants.FADE} onRequestClose={() => setModalVisible(false)}>
       <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <TextInput
               style={styles.searchInput}
-              placeholder={'search '}
-              placeholderTextColor={'#ccc'}
+              placeholder={generalConstants.SEARCH_COUNTRY}
+              placeholderTextColor={COLORS.placeholderTextColor}
               value={search}
               onChangeText={setSearch}
             />
@@ -82,12 +81,11 @@ const styles = StyleSheet.create({
     top:0,
     width:'100%',
     height:'100%',
-    // flex: 1, 
     backgroundColor: 'rgba(0,0,0,0.5)', 
     justifyContent: 'center', 
 },
   modalContent: { 
-    backgroundColor: '#fff', 
+    backgroundColor: COLORS.defaultBackground, 
     padding: 20, 
     borderRadius: 16, 
     margin: 20,
@@ -96,36 +94,41 @@ const styles = StyleSheet.create({
     height:'95%',
     justifyContent:'center',
     alignSelf:'center',
-    // alignItems:'center',
   },
   searchInput: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLORS.placeholderTextColor,
     padding: 10,
-    color:'#2E2E2E',
+    color:COLORS.charcoal,
     borderRadius: 8,
     marginBottom: 20,
   },
   countryItem: {
     flexDirection: 'row',
+    alignItems:'center',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: COLORS.borderBottomColor,
   },
-  countryName: { flex: 1, fontSize: 16 },
+  countryName: { 
+    flex: 1, 
+    fontSize: 16,
+    color:COLORS.lavaGrey,
+  },
   filterBox: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 1,
-    backgroundColor:'white',  
-    borderColor: '#ccc',
+    backgroundColor:COLORS.defaultBackground,  
+    borderColor: COLORS.placeholderTextColor,
     borderRadius: 8,
   },
   countryText: {
     fontSize: 14,
     fontWeight: 'bold',
+    color:COLORS.semiDarkText,
   },
 });
 

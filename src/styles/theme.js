@@ -18,14 +18,20 @@ let vh = calHeight(1);
 let vw = calWidth(1);
 
 const COLORS = {
+    placeholderTextColor : '#ccc',
+    defaultBackground: '#FFFFFF',
+    borderBottomColor: '#eee',
+    emptyText:'#999',
+    buttonBackground: '#4582e6',
+    charcoal : '#2E2E2E',
+    semiDarkText: '#4E4E4E',
+    decriptionText: '#666',
+    titleText: '#000000',
     primary: '#1E90FF',
     secondary: '#FF6347',
-    background: '#FFFFFF',
     text: '#000000',
-    buttonBackground: '#008CBA',
     buttonText: '#FFFFFF',
     border: '#E0E0E0',
-    semiDarkText: '#4E4E4E',
     green: '#82C341',
     grey: '#8E8E8E',
     mfgBlue: '#0076BD',
@@ -36,7 +42,6 @@ const COLORS = {
     headerBorder: '#E0E0E0',
     lavaGrey: '#6E6E6E',
     secondaryBackground: '#F5F5F5',
-    charcoal : '#2E2E2E',
     yellow: 'yellow',
     tabIndicator: '#D12217',
 };
@@ -55,7 +60,6 @@ const SPACING = {
   };
   
 export {
-    // Basic calculations
     calHeight,
     calWidth,
     COLORS,
