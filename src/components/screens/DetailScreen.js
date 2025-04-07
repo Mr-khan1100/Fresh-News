@@ -73,9 +73,10 @@ const DetailScreen = ({ route, navigation }) => {
             style={styles.image}
             source={
               article.urlToImage
-                ? { uri: article.urlToImage }
+                ? { uri: article.urlToImage, cache: FastImage.cacheControl.web, }
                 : defaultImage
             }
+            fallback={defaultImage}
             resizeMode={FastImage.resizeMode.cover}
             priority={FastImage.priority.high}
           />

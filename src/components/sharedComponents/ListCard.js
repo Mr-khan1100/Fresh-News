@@ -11,9 +11,10 @@ const ListCard = ({ item, onPress }) => {
         style={styles.image}
         source={
           item.urlToImage
-            ? { uri: item.urlToImage }
+            ? { uri: item.urlToImage, priority: FastImage.priority.high, cache: FastImage.cacheControl.web, }
             : defaultImage
         }
+        fallback={defaultImage}
         resizeMode={FastImage.resizeMode.cover}
       />
       <View style={styles.textContainer}>
