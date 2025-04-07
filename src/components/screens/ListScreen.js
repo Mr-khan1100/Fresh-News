@@ -4,7 +4,7 @@ import { getSelectedCategoryList } from '@api/services';
 import CustomHeader from '@utils/CustomHeader';
 import ListCard from '@components/sharedComponents/ListCard';
 import { COLORS } from '@styles/theme';
-import { checkInternetConnection } from '@utils/sharedFunctions';
+import { Alerts, checkInternetConnection } from '@utils/sharedFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategoryList } from '@redux/slices/userSlice';
 import { UserContext } from '@components/navigation/ContextProvider';
@@ -28,14 +28,14 @@ const ListScreen = ({ route, navigation }) => {
       setIsRefreshing(false);
     } catch (error) {
       navigation.goBack();
-      Alert.alert(generalConstants.OOPS, error.message || generalConstants.UNEXPECTED_ERROR);
+      Alerts(generalConstants.OOPS, error.message || generalConstants.UNEXPECTED_ERROR);
     }finally{
       setLoading(false);
       setIsRefreshing(false);
     }
     }else{
       navigation.goBack();
-      Alert.alert(generalConstants.NO_INTERNET, generalConstants.CHECK_INTERNET);
+      Alerts(generalConstants.NO_INTERNET, generalConstants.CHECK_INTERNET)
       setLoading(false);
       setIsRefreshing(false);
     }

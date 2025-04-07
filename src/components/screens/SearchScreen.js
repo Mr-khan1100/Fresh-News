@@ -5,7 +5,7 @@ import { getSearchResults } from "@api/services";
 import { setDate, setSearchResult } from "@redux/slices/userSlice";
 import { Alert, FlatList, Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { UserContext } from "@components/navigation/ContextProvider";
-import { checkInternetConnection, formatDate } from "@utils/sharedFunctions";
+import { Alerts, checkInternetConnection, formatDate } from "@utils/sharedFunctions";
 import CustomHeader from "@utils/CustomHeader";
 import { COLORS } from "@styles/theme";
 import calendarIconSource from '@assets/icons/date_input.png';
@@ -59,12 +59,13 @@ const SearchScreen = ({navigation}) => {
         } catch (error) {
             console.log(error, 'error');
             dispatch(setSearchResult([]));
-          Alert.alert(generalConstants.OOPS, error.message || generalConstants.UNEXPECTED_ERROR);
+            Alerts(generalConstants.OOPS, error.message || generalConstants.UNEXPECTED_ERROR);
+          
         }finally{
           setLoading(false);
         }
         }else{
-          Alert.alert(generalConstants.NO_INTERNET, generalConstants.CHECK_INTERNET);
+          Alerts(generalConstants.NO_INTERNET, generalConstants.CHECK_INTERNET)
           setLoading(false);
         }
     };

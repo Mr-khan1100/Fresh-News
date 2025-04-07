@@ -1,5 +1,5 @@
-// utils/checkConnection.js
 import NetInfo from '@react-native-community/netinfo';
+import { Alert } from 'react-native';
 
 export const checkInternetConnection = async () => {
   const state = await NetInfo.fetch();
@@ -21,4 +21,20 @@ export const formatDate = (dateString) => {
 
 export const generateArticleId = (article) => {
     return `${article.title}-${article.publishedAt}`.replace(/[^a-zA-Z0-9]/g, '-');
+};
+
+
+export const Alerts = (header, message) =>{
+  Alert.alert(
+      header,  
+      message,
+      [
+          { 
+          text: 'OK', 
+          onPress: () => console.log('OK Pressed'),
+          style: 'cancel' ,
+          },
+      ],
+      { cancelable: true }
+  );
 };
